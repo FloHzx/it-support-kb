@@ -6,20 +6,29 @@ Base de connaissances FAQ et scripts pour le support IT, avec un focus sur l'adm
 
 - `faq/` : fiches pratiques par thème (ex. `faq/m365/`), format Markdown.
 - `scripts/` : scripts PowerShell associés aux fiches FAQ (ex. `scripts/m365/`).
-- `launcher/` : interface graphique pour parcourir et lancer les scripts.
+- `launcher/` : interface web locale pour parcourir et lancer les scripts.
+- `Lancer.bat` : point d'entrée à double-cliquer pour ouvrir l'interface.
 
-## Lanceur de scripts (interface graphique)
+## Lanceur de scripts (interface web locale)
 
-`launcher/Show-ScriptLauncher.ps1` liste automatiquement les scripts du dossier `scripts/`, classés par catégorie (un dossier = une catégorie), et permet de les lancer directement :
+**Pour l'utiliser : double-cliquez sur [`Lancer.bat`](Lancer.bat)** à la racine du dépôt. Cela :
 
-```powershell
-.\launcher\Show-ScriptLauncher.ps1
-```
+1. met à jour silencieusement le dépôt (`git pull`), sans que vous ayez besoin de taper une commande git,
+2. démarre un petit serveur local (accessible uniquement depuis ce poste, sur `http://localhost`),
+3. ouvre l'interface dans votre navigateur par défaut : une page avec vos scripts présentés en cartes, classées par catégorie (un sous-dossier de `scripts/` = une catégorie).
 
-Sélectionnez un script dans l'arbre, renseignez ses paramètres (les champs marqués `*` sont obligatoires), puis :
+Cliquez sur un script pour ouvrir sa fiche : description, champs de paramètres (les champs marqués `*` sont obligatoires), puis :
 
 - **Lancer dans une nouvelle fenêtre PowerShell** : exécute le script dans une fenêtre séparée, pour garder les prompts interactifs (ex. `Connect-MgGraph`) et la sortie console.
 - **Copier la commande** : copie la commande équivalente dans le presse-papiers si vous préférez l'exécuter vous-même.
+
+Pour fermer l'interface, fermez simplement la fenêtre de console ouverte par `Lancer.bat`.
+
+Vous pouvez aussi lancer le serveur manuellement (ex. pour changer le port) :
+
+```powershell
+.\launcher\Start-WebLauncher.ps1 -Port 8734
+```
 
 Le lanceur n'installe ni n'importe aucun module : chaque script gère ses propres prérequis.
 
