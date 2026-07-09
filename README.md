@@ -6,6 +6,22 @@ Base de connaissances FAQ et scripts pour le support IT, avec un focus sur l'adm
 
 - `faq/` : fiches pratiques par thème (ex. `faq/m365/`), format Markdown.
 - `scripts/` : scripts PowerShell associés aux fiches FAQ (ex. `scripts/m365/`).
+- `launcher/` : interface graphique pour parcourir et lancer les scripts.
+
+## Lanceur de scripts (interface graphique)
+
+`launcher/Show-ScriptLauncher.ps1` liste automatiquement les scripts du dossier `scripts/`, classés par catégorie (un dossier = une catégorie), et permet de les lancer directement :
+
+```powershell
+.\launcher\Show-ScriptLauncher.ps1
+```
+
+Sélectionnez un script dans l'arbre, renseignez ses paramètres (les champs marqués `*` sont obligatoires), puis :
+
+- **Lancer dans une nouvelle fenêtre PowerShell** : exécute le script dans une fenêtre séparée, pour garder les prompts interactifs (ex. `Connect-MgGraph`) et la sortie console.
+- **Copier la commande** : copie la commande équivalente dans le presse-papiers si vous préférez l'exécuter vous-même.
+
+Le lanceur n'installe ni n'importe aucun module : chaque script gère ses propres prérequis.
 
 ## Prérequis pour les scripts M365
 
